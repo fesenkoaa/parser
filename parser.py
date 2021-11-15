@@ -2,15 +2,15 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 
-from config import user_agent
+from config import accept, user_agent
 
 HOST = 'https://www.otomoto.pl/'
 URL = 'https://www.otomoto.pl/osobowe/bmw/m5/'
 HEADERS = {
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'accept': accept,
     'user-agent': user_agent
 }
-FILE = 'cars2.csv'
+FILE = 'cars.csv'
 
 
 def get_html(url, params=None):
@@ -59,7 +59,7 @@ def parser():
         cars = []
         pages = get_pages(html.text)
         for page in range(1, pages + 1):
-            print(f'Parsing of page {page} of pages...')
+            print(f'Parsing of page {page} of {pages}...')
             html = get_html(URL, params={'page': page}).text
             cars.extend(get_content(html))
         save(cars, path=FILE)
