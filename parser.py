@@ -5,7 +5,7 @@ import csv
 from config import accept, user_agent
 
 
-class ParserOtomoto():
+class ParserOtomoto:
 
     def __init__(self, page_url, headers, filename):
         self.page_url = page_url
